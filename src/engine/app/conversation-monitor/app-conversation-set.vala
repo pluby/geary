@@ -59,18 +59,11 @@ private class Geary.App.ConversationSet : BaseObject {
         foreach (Conversation conversation in _conversations)
             conversation.clear_owner();
     }
-    
+
     // Returns a Collection of zero or more Conversations that have Message-IDs associated with
     // the ancestors of the supplied Email ... if more than one, then add_email() should not be
     // called
     private Gee.Set<Conversation> get_associated_conversations(Geary.Email email) {
-        Gee.Set<Geary.RFC822.MessageID>? ancestors = email.get_ancestors();
-        if (ancestors != null) {
-            return Geary.traverse<Geary.RFC822.MessageID>(ancestors)
-                .map_nonnull<Conversation>(a => logical_message_id_map.get(a))
-                .to_hash_set();
-        }
-        
         return Gee.Set.empty<Conversation>();
     }
     

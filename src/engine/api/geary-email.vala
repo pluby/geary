@@ -298,22 +298,7 @@ public class Geary.Email : BaseObject {
      * this method to return a complete list.
      */
     public Gee.Set<RFC822.MessageID>? get_ancestors() {
-        Gee.Set<RFC822.MessageID> ancestors = new Gee.HashSet<RFC822.MessageID>();
-        
-        // the email's Message-ID counts as its lineage
-        if (message_id != null)
-            ancestors.add(message_id);
-        
-        // References list the email trail back to its source
-        if (references != null && references.list != null)
-            ancestors.add_all(references.list);
-        
-        // RFC822 requires the In-Reply-To Message-ID be prepended to the References list, but
-        // this ensures that's the case
-        if (in_reply_to != null)
-           ancestors.add(in_reply_to);
-       
-       return (ancestors.size > 0) ? ancestors : null;
+        return null;
     }
     
     public string get_preview_as_string() {
